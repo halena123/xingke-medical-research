@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="北京星稞医学研究有限公司 - 专注于临床医学研究服务，包括真实世界研究、回顾性研究、肿瘤研究等领域">
+  <title>北京星稞医学研究有限公司</title>
+
+  <!-- 字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- 样式表 -->
+  <style>
+/* ========================================
+   北京星稞医学研究有限公司 - 网站样式
+   设计理念：星空下的种子（Edge 浏览器风格 Hero）
+   配色：深空蓝 + 护眼米白 + 生机绿
+   ======================================== */
+
+/* ========= 设计变量（护眼配色）========= */
+:root {
+  /* 深空色系 - 用于 Hero 区域 */
+  --space-deep: #0a0e1a;
+  --space-dark: #0d1526;
+  --space-mid: #111b2e;
+  --space-light: #1a2744;
+
+  /* 主色调 */
+  --primary-900: #1a365d;
+  --primary-700: #2c5282;
+  --primary-600: #3182ce;
+  --primary-500: #4299e1;
+  --primary-400: #63b3ed;
+  --primary-100: #ebf8ff;
+
+  /* 辅助色 - 生机绿 */
+  --green-600: #38a169;
+  --green-500: #48bb78;
+  --green-400: #68d391;
+  --green-100: #f0fff4;
+
+  /* 强调色 - 暖金 */
+  --gold-500: #d69e2e;
+  --gold-400: #ecc94b;
+
+  /* 护眼背景色 */
+  --bg-primary: #fefcf8;
+  --bg-secondary: #f7fafc;
+  --bg-tertiary: #edf2f7;
+  --bg-card: #ffffff;
+
+  /* 文本色 */
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --text-tertiary: #718096;
+  --text-light: #a0aec0;
+  --text-white: #ffffff;
+
+  /* 边框与阴影 */
+  --border-light: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 0 30px rgba(66, 153, 225, 0.25);
+
+  /* 间距 */
+  --sp-xs: 0.5rem;
+  --sp-sm: 1rem;
+  --sp-md: 1.5rem;
+  --sp-lg: 2rem;
+  --sp-xl: 3rem;
+  --sp-2xl: 4rem;
+  --sp-3xl: 6rem;
+
+  /* 字体 */
+  --font-sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+  --font-serif: 'Noto Serif SC', 'STSong', 'SimSun', serif;
+
+  /* 过渡 */
+  --ease-fast: 150ms ease;
+  --ease-normal: 300ms ease;
+  --ease-slow: 500ms ease;
+  --ease-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  border-radius: 0;
+}
+
+/* ========= 全局重置 ========= */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--sp-md);
+}
+@media (min-width: 768px) {
+  .container { padding: 0 var(--sp-lg); }
+}
+
+::selection {
+  background-color: rgba(49, 130, 206, 0.25);
+  color: var(--primary-900);
+}
+
+/* ========= 导航栏（透明悬浮于 Hero 上）========= */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: transparent;
+  transition: all var(--ease-normal);
+  padding: 16px 0;
+}
+
+.navbar.scrolled,
+.navbar.navbar-solid {
+  background: rgba(10, 14, 26, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 10px 0;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+}
+
+/* Logo（文字图标版） */
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: var(--text-white);
+}
+.navbar:not(.scrolled) .nav-logo { color: var(--text-white); }
+
+.nav-logo-icon {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--primary-500), var(--green-500));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.15rem; font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(49, 130, 206, 0.35);
+}
+
+.nav-logo-text {
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--text-white); letter-spacing: 0.02em;
+}
+.nav-logo-text span {
+  display: block; font-size: 0.65rem; font-weight: 400;
+  color: rgba(255,255,255,0.5); letter-spacing: 0.08em;
+  margin-top: 1px;
+}
+
+/* 导航链接 */
+.nav-links {
+  display: none; list-style: none; gap: var(--sp-lg);
+}
+@media (min-width: 860px) { .nav-links { display: flex; } }
+
+.nav-links a {
+  text-decoration: none; color: rgba(255,255,255,0.78);
+  font-size: 0.9rem; font-weight: 500;
+  transition: color var(--ease-fast); position: relative;
+}
+.nav-links a:hover { color: var(--text-white); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+  background: linear-gradient(90deg, var(--primary-400), var(--green-400));
+  transition: width var(--ease-normal);
+}
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta { display: none; }
+@media (min-width: 860px) { .nav-cta { display: inline-flex; } }
+
+/* 按钮 */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 6px;
+  padding: 11px 24px;
+  font-size: 0.9rem; font-weight: 600;
+  text-decoration: none; border: none; border-radius: 10px;
+  cursor: pointer; transition: all var(--ease-normal);
+  font-family: var(--font-sans); letter-spacing: 0.01em;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-500));
+  color: white; box-shadow: 0 2px 12px rgba(49,130,206,0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(49,130,206,0.4);
+}
+
+.btn-glow {
+  background: linear-gradient(135deg, var(--primary-500), var(--green-500));
+  color: white;
+  box-shadow: 0 4px 20px rgba(49,130,206,0.35);
+  padding: 14px 32px; font-size: 0.95rem; border-radius: 12px;
+}
+.btn-glow:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(49,130,206,0.45);
+}
+
+.btn-glass {
+  background: rgba(255,255,255,0.1);
+  color: var(--text-white);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  padding: 14px 32px; font-size: 0.95rem; border-radius: 12px;
+}
+.btn-glass:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+
+/* 移动端菜单按钮 */
+.nav-mobile-toggle {
+  display: flex; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 5px; z-index: 1001;
+}
+@media (min-width: 860px) { .nav-mobile-toggle { display: none; } }
+.nav-mobile-toggle span {
+  display: block; width: 22px; height: 2px;
+  background: var(--text-white); border-radius: 2px;
+  transition: all var(--ease-normal);
+}
+.nav-mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-mobile-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* 移动端菜单面板 */
+.nav-mobile-menu {
+  display: none; position: fixed; top: 0; right: 0;
+  width: 280px; height: 100vh; background: rgba(10, 14, 26, 0.97);
+  backdrop-filter: blur(20px); padding: 80px 30px 30px;
+  z-index: 999; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  transform: translateX(100%);
+}
+.nav-mobile-menu.active { display: block; transform: translateX(0); }
+.nav-mobile-menu ul { list-style: none; }
+.nav-mobile-menu li { margin-bottom: 4px; }
+.nav-mobile-menu a {
+  display: block; padding: 14px 16px;
+  text-decoration: none; color: rgba(255,255,255,0.8);
+  font-size: 1rem; font-weight: 500; border-radius: 10px;
+  transition: all var(--ease-fast);
+}
+.nav-mobile-menu a:hover {
+  background: rgba(255,255,255,0.08); color: var(--text-white);
+}
+
+
+/* ========================================
+   HERO 区域 — Edge 风格：星空 + 山脉剪影
+   ======================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #070b14 0%,
+    #0a1020 20%,
+    #0d1830 40%,
+    #112240 65%,
+    #1a2d4a 85%,
+    #233d5c 100%
+  );
+}
+
+/* 星空画布 - 仅在 Hero 内 */
+#starfield {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 大气光晕层 - 模拟银河/星云 */
+.hero-atmosphere {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 2; pointer-events: none;
+  background:
+    /* 银河带效果 - 斜向 */
+    radial-gradient(ellipse 120% 60% at 65% 30%, rgba(120,140,200,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 50% at 30% 50%, rgba(90,110,180,0.04) 0%, transparent 55%),
+    /* 底部微光 - 从山脉升起 */
+    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(49,130,206,0.06) 0%, transparent 60%),
+    /* 顶部深空渐隐 */
+    linear-gradient(180deg, transparent 0%, rgba(7,11,20,0.3) 100%);
+  animation: atmosphereShift 20s ease-in-out infinite alternate;
+}
+@keyframes atmosphereShift {
+  0% { opacity: 1; }
+  100% { opacity: 0.75; }
+}
+
+/* 山脉剪影层 */
+.hero-mountains {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 35%;
+  z-index: 3; pointer-events: none;
+}
+.hero-mountains svg {
+  width: 100%; height: 100%;
+  display: block;
+}
+
+/* 四层山脉 - 由远及近，越来越暗 */
+.mountain-layer { transition: fill 0.5s ease; }
+.mountain-far  { fill: rgba(18,28,48,0.55); }
+.mountain-mid  { fill: rgba(12,20,38,0.72); }
+.mountain-near { fill: rgba(8,14,28,0.88); }
+.mountain-front { fill: rgba(4,8,18,0.97); }
+
+
+/* Hero 内容 */
+.hero-content-wrapper {
+  position: relative;
+  z-index: 10;
+  padding-top: 80px;
+  padding-bottom: 120px; /* 为山脉留空间 */
+}
+
+.hero-content {
+  max-width: 720px;
+}
+
+/* 徽章 */
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  padding: 8px 18px;
+  border-radius: 100px;
+  margin-bottom: var(--sp-lg);
+  font-size: 0.85rem; color: rgba(255,255,255,0.7);
+  font-weight: 500; letter-spacing: 0.03em;
+}
+.badge-dot {
+  width: 8px; height: 8px;
+  background: var(--green-400);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(72,187,120,0.6);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+/* 标题 — 蓝紫渐变文字 */
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700; line-height: 1.3;
+  margin-bottom: var(--sp-md);
+  letter-spacing: -0.01em;
+  background: linear-gradient(135deg, #7dd3fc, #a78bfa, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* 备用：不支持渐变的浏览器显示白色 */
+  color: var(--text-white);
+}
+
+/* 副标题 */
+.hero-subtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  line-height: 1.8;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: var(--sp-xl);
+  max-width: 560px;
+  font-weight: 300;
+}
+
+/* CTA 按钮组 */
+.hero-cta-group {
+  display: flex; flex-wrap: wrap; gap: 16px;
+  margin-bottom: var(--sp-3xl);
+}
+
+/* 数据统计 */
+.hero-stats {
+  display: flex; align-items: center; gap: var(--sp-md);
+  padding-top: var(--sp-lg);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+@media (max-width: 600px) {
+  .hero-stats { flex-wrap: wrap; gap: var(--sp-sm); }
+}
+
+.hero-stat {
+  display: flex; align-items: baseline; gap: 4px;
+}
+.hero-stat-number {
+  font-size: 2rem; font-weight: 700;
+  color: var(--text-white);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.hero-stat-plus {
+  font-size: 1.2rem; font-weight: 600;
+  color: var(--primary-400);
+}
+.hero-stat-label {
+  font-size: 0.82rem; color: rgba(255,255,255,0.45);
+  margin-left: 4px; white-space: nowrap;
+}
+.hero-stat-divider {
+  width: 1px; height: 30px;
+  background: rgba(255,255,255,0.12);
+}
+
+/* 向下滚动提示 */
+.scroll-hint {
+  position: absolute;
+  bottom: 36px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.35);
+  font-size: 0.72rem; letter-spacing: 0.1em;
+  animation: scrollHintBounce 2.5s ease-in-out infinite;
+}
+@keyframes scrollHintBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+  50% { transform: translateX(-50%) translateY(8px); opacity: 1; }
+}
+
+.scroll-mouse {
+  width: 22px; height: 34px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
+  display: flex; justify-content: center; padding-top: 6px;
+}
+.scroll-wheel {
+  width: 3px; height: 8px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 3px;
+  animation: scrollWheel 2s ease-in-out infinite;
+}
+@keyframes scrollWheel {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(8px); opacity: 0; }
+}
+
+
+/* ========================================
+   关于我们（简洁版）
+   ======================================== */
+.about {
+  padding: var(--sp-3xl) 0;
+  background: var(--bg-primary);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--sp-2xl);
+  max-width: 650px;
+  margin-left: auto; margin-right: auto;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem; font-weight: 600;
+  color: var(--primary-500);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: var(--sp-xs);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 700; color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: var(--sp-sm);
+}
+
+.section-description {
+  font-size: 1rem; color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-xl);
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+.about-text p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.about-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-md);
+}
+
+.highlight-item {
+  text-align: center;
+  padding: var(--sp-lg) var(--sp-sm);
+  background: var(--bg-card);
+  border-radius: 14px;
+  border: 1px solid var(--border-light);
+  transition: all var(--ease-normal);
+}
+.highlight-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.highlight-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-600);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.highlight-label {
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+
+/* ========================================
+   服务领域（重新设计版面）
+   ======================================== */
+.services {
+  padding: var(--sp-3xl) 0;
+  background: var(--bg-secondary);
+}
+
+/* 每个服务模块块 */
+.service-block {
+  margin-bottom: var(--sp-3xl);
+}
+.service-block:last-child {
+  margin-bottom: 0;
+}
+
+.service-block-header {
+  text-align: center;
+  max-width: 640px;
+  margin-left: auto; margin-right: auto;
+  margin-bottom: var(--sp-xl);
+}
+
+.service-block-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: var(--sp-sm);
+}
+
+/* 临床研究运营服务 - 4宫格 */
+.service-items-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-md);
+}
+@media (min-width: 640px) {
+  .service-items-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 960px) {
+  .service-items-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.service-item {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: var(--sp-lg);
+  border: 1px solid var(--border-light);
+  transition: all var(--ease-normal);
+}
+.service-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(49, 130, 206, 0.15);
+}
+
+.service-item-icon {
+  font-size: 1.8rem;
+  margin-bottom: var(--sp-sm);
+  display: block;
+}
+
+.service-item h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.service-item p {
+  font-size: 0.88rem;
+  color: var(--text-tertiary);
+  line-height: 1.7;
+}
+
+/* 业务培训与咨询 - 3宫格 */
+.training-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-md);
+}
+@media (min-width: 640px) {
+  .training-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.training-item {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: var(--sp-lg);
+  border: 1px solid var(--border-light);
+  transition: all var(--ease-normal);
+}
+.training-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(49, 130, 206, 0.15);
+}
+
+.training-item h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.training-item p {
+  font-size: 0.88rem;
+  color: var(--text-tertiary);
+  line-height: 1.7;
+}
+
+/* 出海汇率风险管理 - 3宫格 */
+.risk-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-md);
+}
+@media (min-width: 640px) {
+  .risk-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.risk-item {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: var(--sp-lg);
+  border: 1px solid var(--border-light);
+  transition: all var(--ease-normal);
+}
+.risk-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(49, 130, 206, 0.15);
+}
+
+.risk-item h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.risk-item p {
+  font-size: 0.88rem;
+  color: var(--text-tertiary);
+  line-height: 1.7;
+}
+
+/* 交替背景（模块间区分） */
+.service-block-alt .service-block-header,
+.service-block-alt .training-grid,
+.service-block-alt .risk-grid {
+  /* 第二个模块使用浅底色区分 */
+}
+.service-block-alt {
+  background: var(--bg-primary);
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding: var(--sp-3xl) calc(50vw - 50% + var(--sp-md));
+}
+@media (min-width: 768px) {
+  .service-block-alt {
+    padding-left: calc(50vw - 50% + var(--sp-lg));
+    padding-right: calc(50vw - 50% + var(--sp-lg));
+  }
+}
+
+
+/* ========================================
+   联系方式
+   ======================================== */
+.contact {
+  padding: var(--sp-3xl) 0;
+  background: var(--bg-primary);
+}
+
+.contact .section-header {
+  margin-bottom: var(--sp-xl);
+}
+
+.contact-info-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+  margin-top: var(--sp-xl);
+}
+
+.contact-info-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(45, 106, 120, 0.15);
+  border-radius: 14px;
+  padding: var(--sp-xl) var(--sp-lg);
+  text-align: center;
+  transition: all var(--ease-normal);
+}
+.contact-info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-500);
+}
+
+.contact-card-icon {
+  font-size: 2.2rem;
+  margin-bottom: var(--sp-sm);
+  display: block;
+}
+
+.contact-info-card h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--sp-xs);
+}
+
+.contact-info-card p,
+.contact-info-card a {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+.contact-info-card a:hover {
+  color: var(--primary-500);
+}
+
+/* 响应式：联系卡片 */
+@media (max-width: 768px) {
+  .contact-info-cards {
+    grid-template-columns: 1fr;
+    gap: var(--sp-md);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .contact-info-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ========================================
+   页脚
+   ======================================== */
+.footer {
+  background: var(--space-deep);
+  padding: var(--sp-2xl) 0 var(--sp-lg);
+  color: rgba(255,255,255,0.6);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-xl);
+  margin-bottom: var(--sp-xl);
+}
+@media (min-width: 640px) {
+  .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; }
+}
+
+.footer-brand .nav-logo {
+  margin-bottom: var(--sp-sm);
+}
+
+.footer-logo .nav-logo-icon {
+  width: 32px; height: 32px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 10px rgba(49, 130, 206, 0.3);
+}
+
+.footer-desc {
+  margin-top: var(--sp-sm);
+  font-size: 0.88rem; line-height: 1.7;
+  color: rgba(255,255,255,0.4);
+}
+
+.footer-links h4 {
+  font-size: 0.88rem; font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: var(--sp-sm);
+}
+.footer-links ul { list-style: none; }
+.footer-links li { margin-bottom: 6px; }
+.footer-links a {
+  color: rgba(255,255,255,0.45);
+  text-decoration: none; font-size: 0.86rem;
+  transition: color var(--ease-fast);
+}
+.footer-links a:hover { color: var(--primary-400); }
+.footer-links li:not(:has(a)) {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.86rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: var(--sp-md);
+  text-align: center;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.3);
+}
+
+
+/* ========================================
+   返回顶部按钮
+   ======================================== */
+.back-to-top {
+  position: fixed;
+  bottom: 30px; right: 30px;
+  width: 44px; height: 44px;
+  background: var(--primary-600);
+  color: white;
+  border: none; border-radius: 12px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transform: translateY(20px);
+  transition: all var(--ease-normal);
+  z-index: 900;
+  box-shadow: 0 4px 15px rgba(49,130,206,0.35);
+}
+.back-to-top.visible {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--primary-700);
+  transform: translateY(-3px);
+}
+
+
+/* ========================================
+   动画：淡入上移
+   ======================================== */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
+              transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ========================================
+   响应式补充
+   ======================================== */
+@media (max-width: 480px) {
+  .hero-title { font-size: 1.9rem; }
+  .hero-subtitle { font-size: 0.9rem; }
+  .hero-stats { gap: var(--sp-sm); }
+  .hero-stat-number { font-size: 1.5rem; }
+  .btn-glow, .btn-glass { padding: 12px 24px; font-size: 0.87rem; }
+  .about-highlights { grid-template-columns: 1fr; }
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">星</div>
+        <div class="nav-logo-text">
+          星稞医学
+          <span>BEIJING XINGKE MEDICAL RESEARCH</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">关于我们</a></li>
+        <li><a href="#services">服务领域</a></li>
+        <li><a href="#contact">联系方式</a></li>
+      </ul>
+
+      <a href="#contact" class="btn btn-primary nav-cta">联系方式</a>
+
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="菜单">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========================================
+       HERO 区域
+       ======================================== -->
+  <section class="hero" id="hero">
+    <canvas id="starfield"></canvas>
+
+    <div class="hero-mountains" aria-hidden="true">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="mountain-layer mountain-far" d="
+          M0,240 Q60,200 120,220 T240,190 T360,210 T480,175 T600,195 T720,160 T840,185
+          T960,150 T1080,180 T1200,145 T1320,170 T1440,140
+          L1440,320 L0,320 Z
+        "/>
+        <path class="mountain-layer mountain-mid" d="
+          M0,260 Q80,220 160,245 T320,210 T480,235 T640,195 T800,225 T960,185
+          T1120,215 T1280,180 T1440,205
+          L1440,320 L0,320 Z
+        "/>
+        <path class="mountain-layer mountain-near" d="
+          M0,280 Q100,250 200,275 T400,245 T600,270 T800,240 T1000,265
+          T1200,238 T1440,260
+          L1440,320 L0,320 Z
+        "/>
+        <path class="mountain-layer mountain-front" d="
+          M0,295 L0,300 Q40,282 90,290 L130,270 Q160,255 200,268 Q240,248 280,258
+          Q330,238 380,250 Q420,230 470,245 Q520,222 570,238 Q620,215 670,232
+          Q730,208 790,225 Q850,202 910, 218 Q970,195 1030,212 Q1090,190 1150,208
+          Q1210,188 1270,205 Q1330,187 1390,200 Q1420,192 1440,198
+          L1440,320 L0,320 Z
+        "/>
+      </svg>
+    </div>
+
+    <div class="hero-atmosphere" aria-hidden="true"></div>
+
+    <div class="container hero-content-wrapper">
+      <div class="hero-content fade-in-up">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span>临床医学研究服务</span>
+        </div>
+
+        <h1 class="hero-title">
+          播撒医学研究的种子<br>
+          守护人类健康的未来
+        </h1>
+
+        <p class="hero-subtitle">
+          在浩瀚的星空下，每一颗种子都承载着无限的可能。<br>
+          宇宙本身，就是一颗最伟大的种子；<br>
+          而医学研究的每一次探索，更是人类健康进步的种子。
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#services" class="btn btn-glow">了解服务</a>
+          <a href="#contact" class="btn btn-glass">联系我们</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-number" data-target="50">0</span>
+            <span class="hero-stat-plus">+</span>
+            <span class="hero-stat-label">研究项目</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-number" data-target="10">0</span>
+            <span class="hero-stat-plus">+</span>
+            <span class="hero-stat-label">年行业经验</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-number" data-target="3">0</span>
+            <span class="hero-stat-label">大核心服务模块</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>向下探索</span>
+    </div>
+  </section>
+
+  <!-- ========================================
+       关于我们（简洁版）
+       ======================================== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">About</span>
+        <h2 class="section-title">关于我们</h2>
+        <p class="section-description">
+          北京星稞医学研究有限公司，专注于为医药企业提供专业的临床医学研究服务。
+        </p>
+      </div>
+
+      <div class="about-grid fade-in-up">
+        <div class="about-text">
+        <p>
+          我们深耕临床医学研究领域，服务涵盖真实世界研究、回顾性研究、肿瘤 I-IV 期临床研究等方向。
+          团队核心成员拥有十年以上行业经验，熟悉国内外法规政策与运营流程。
+        </p>
+        <p>
+          同时，我们配备专业的外汇避险咨询团队，为出海医学研究项目提供汇率风险管理支持。
+        </p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       服务领域（重新设计版面）
+       ======================================== -->
+  <section class="services" id="services">
+    <div class="container">
+
+      <!-- 模块一：临床研究运营服务 -->
+      <div class="service-block fade-in-up">
+        <div class="service-block-header">
+          <span class="service-block-icon">🔬</span>
+          <h2 class="section-title">临床研究运营服务</h2>
+          <p class="section-description">
+            承接非注册与注册类临床研究项目，覆盖以下研究类型：
+          </p>
+        </div>
+
+        <div class="service-items-grid">
+          <div class="service-item">
+            <div class="service-item-icon">📊</div>
+            <h4>回顾性研究</h4>
+            <p>基于已有临床数据进行分析，探索治疗效果与预后影响因素，为前瞻性研究提供方向。</p>
+          </div>
+          <div class="service-item">
+            <div class="service-item-icon">👁️</div>
+            <h4>观察性研究</h4>
+            <p>在真实临床环境中收集数据，评估治疗手段的安全性与有效性，无需干预患者用药。</p>
+          </div>
+          <div class="service-item">
+            <div class="service-item-icon">🌐</div>
+            <h4>真实世界研究（RWS）</h4>
+            <p>基于真实诊疗数据，补充随机对照试验（RCT）的局限性，为临床决策提供循证支持。</p>
+          </div>
+          <div class="service-item">
+            <div class="service-item-icon">🧬</div>
+            <h4>肿瘤 I – IV 期临床研究</h4>
+            <p>覆盖肿瘤药物研发全周期：I 期（安全性与剂量探索）、II 期（初步疗效）、III 期（确证性研究）、IV 期（上市后监测）。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 模块二：业务培训与咨询 -->
+      <div class="service-block fade-in-up service-block-alt">
+        <div class="service-block-header">
+          <span class="service-block-icon">🎓</span>
+          <h2 class="section-title">业务培训与咨询</h2>
+          <p class="section-description">
+            帮助团队系统提升临床研究能力，从行业宏观视角到运营微观实操。
+          </p>
+        </div>
+
+        <div class="training-grid">
+          <div class="training-item">
+            <h4>医药行业宏观分析</h4>
+            <p>解读医药政策趋势、法规环境变化，帮助客户把握行业发展方向。</p>
+          </div>
+          <div class="training-item">
+            <h4>临床研究运营实操</h4>
+            <p>从研究设计、项目管理、数据管理到统计分析，覆盖运营全流程。</p>
+          </div>
+          <div class="training-item">
+            <h4>定制课程培训</h4>
+            <p>根据团队实际情况，量身定制培训内容，理论结合案例，注重落地效果。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 模块三：出海汇率风险管理 -->
+      <div class="service-block fade-in-up">
+        <div class="service-block-header">
+          <span class="service-block-icon">💹</span>
+          <h2 class="section-title">出海汇率风险管理</h2>
+          <p class="section-description">
+            随着中国医学研究走向国际，跨境合作中的汇率波动不可忽视。
+          </p>
+        </div>
+
+        <div class="risk-grid">
+          <div class="risk-item">
+            <h4>汇率风险评估</h4>
+            <p>分析跨境研究合作中的汇率暴露情况，识别潜在风险点。</p>
+          </div>
+          <div class="risk-item">
+            <h4>避险策略咨询</h4>
+            <p>根据项目特点，提供远期、期权等外汇避险工具的专业建议。</p>
+          </div>
+          <div class="risk-item">
+            <h4>执行支持</h4>
+            <p>协助客户与金融机构对接，落实避险方案，持续跟踪效果。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================
+       联系方式
+       ======================================== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Contact</span>
+        <h2 class="section-title">联系方式</h2>
+      </div>
+
+      <div class="contact-info-cards">
+        <div class="contact-info-card fade-in-up">
+          <div class="contact-card-icon">📧</div>
+          <h4>电子邮箱</h4>
+          <a href="mailto:729893410@qq.com">729893410@qq.com</a>
+        </div>
+
+        <div class="contact-info-card fade-in-up">
+          <div class="contact-card-icon">👤</div>
+          <h4>联系人</h4>
+          <p>张女士</p>
+        </div>
+
+        <div class="contact-info-card fade-in-up">
+          <div class="contact-card-icon">🏢</div>
+          <h4>公司名称</h4>
+          <p>北京星稞医学研究有限公司</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       页脚
+       ======================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo footer-logo">
+            <div class="nav-logo-icon">星</div>
+            <div class="nav-logo-text">
+              星稞医学
+              <span>BEIJING XINGKE MEDICAL RESEARCH</span>
+            </div>
+          </a>
+          <p class="footer-desc">
+            专注于临床医学研究服务。<br>
+            真实世界研究 · 回顾性研究 · 肿瘤临床研究。
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>快速链接</h4>
+          <ul>
+            <li><a href="#about">关于我们</a></li>
+            <li><a href="#services">服务领域</a></li>
+            <li><a href="#contact">联系方式</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>联系方式</h4>
+          <ul>
+            <li><a href="mailto:729893410@qq.com">729893410@qq.com</a></li>
+            <li>联系人：张女士</li>
+            <li>北京星稞医学研究有限公司</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 北京星稞医学研究有限公司 版权所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 返回顶部按钮 -->
+  <button class="back-to-top" id="backToTop" aria-label="返回顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- 主脚本 -->
+  <script>
+/**
+ * 北京星稞医学研究有限公司 - 主脚本
+ * Hero 区域：Edge 风格星空动画（Canvas）+ 山脉剪影
+ */
+
+// ========================================
+// 星空背景 — 类似 Edge 新标签页的静谧星空
+// ========================================
+class Starfield {
+  constructor(canvasId) {
+    this.canvas = document.getElementById(canvasId);
+    if (!this.canvas) return;
+
+    this.ctx = this.canvas.getContext('2d');
+    this.stars = [];
+    this.dustParticles = []; // 星尘微粒
+    this.time = 0;
+
+    this.init();
+    this.animate();
+
+    window.addEventListener('resize', () => this.resize());
+  }
+
+  init() {
+    this.resize();
+    this.createStars();
+    this.createDust();
+  }
+
+  resize() {
+    const parent = this.canvas.parentElement;
+    this.canvas.width = parent.offsetWidth;
+    this.canvas.height = parent.offsetHeight;
+    // 重新创建星星以适应新尺寸
+    if (this.stars.length > 0) {
+      this.createStars();
+      this.createDust();
+    }
+  }
+
+  createStars() {
+    const w = this.canvas.width;
+    const h = this.canvas.height;
+    const area = w * h;
+    const count = Math.floor(area / 1200); // 密度适中
+    this.stars = [];
+
+    for (let i = 0; i < count; i++) {
+      // 星星大小分布：大部分小，少量大
+      let radius, brightness;
+      const rand = Math.random();
+
+      if (rand < 0.7) {
+        // 70% 小星星 — 背景点缀
+        radius = Math.random() * 0.6 + 0.2;
+        brightness = Math.random() * 0.4 + 0.2;
+      } else if (rand < 0.92) {
+        // 22% 中等星星
+        radius = Math.random() * 1.0 + 0.5;
+        brightness = Math.random() * 0.4 + 0.4;
+      } else if (rand < 0.98) {
+        // 6% 明亮星星
+        radius = Math.random() * 1.2 + 1.0;
+        brightness = Math.random() * 0.3 + 0.7;
+      } else {
+        // 2% 特别亮的星（带光晕）
+        radius = Math.random() * 0.8 + 1.8;
+        brightness = Math.random() * 0.2 + 0.85;
+      }
+
+      // 颜色微变化：大部分白色，少量偏蓝/偏暖
+      let colorType = 'white';
+      const colorRand = Math.random();
+      if (colorRand > 0.92) colorType = 'blue';
+      else if (colorRand > 0.86) colorType = 'warm';
+
+      this.stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: radius,
+        baseOpacity: brightness,
+        twinkleSpeed: Math.random() * 0.003 + 0.001,
+        twinklePhase: Math.random() * Math.PI * 2,
+        colorType: colorType,
+        // 有些星星有轻微漂移
+        drift: Math.random() * 0.02
+      });
+    }
+  }
+
+  createDust() {
+    // 星尘 — 极淡的大颗粒，增加深度感
+    this.dustParticles = [];
+    const count = Math.floor((this.canvas.width * this.canvas.height) / 8000);
+    for (let i = 0; i < count; i++) {
+      this.dustParticles.push({
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        r: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.06 + 0.02,
+        speed: Math.random() * 0.008 + 0.002
+      });
+    }
+  }
+
+  getStarColor(type, opacity) {
+    switch (type) {
+      case 'blue':
+        return `rgba(180, 200, 255, ${opacity})`;
+      case 'warm':
+        return `rgba(255, 240, 220, ${opacity})`;
+      default:
+        return `rgba(255, 255, 255, ${opacity})`;
+    }
+  }
+
+  drawBackground() {
+    // 渐变由 CSS 处理，这里只做透明清空
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  drawMilkyWay() {
+    // 模拟银河带 — 一条斜向的淡淡光带
+    const w = this.canvas.width;
+    const h = this.canvas.height;
+
+    // 银河主带
+    const mwGrad = this.ctx.createLinearGradient(
+      w * 0.1, h * 0.05,
+      w * 0.9, h * 0.55
+    );
+    mwGrad.addColorStop(0, 'rgba(140,160,200,0)');
+    mwGrad.addColorStop(0.3, 'rgba(150,170,210,0.025)');
+    mwGrad.addColorStop(0.5, 'rgba(160,175,215,0.035)');
+    mwGrad.addColorStop(0.7, 'rgba(150,165,210,0.025)');
+    mwGrad.addColorStop(1, 'rgba(130,155,195,0)');
+
+    this.ctx.save();
+    this.ctx.translate(w * 0.1, -h * 0.05);
+    this.ctx.rotate(0.15); // 轻微倾斜
+
+    this.ctx.fillStyle = mwGrad;
+    this.ctx.beginPath();
+    this.ctx.ellipse(w * 0.45, h * 0.3, w * 0.55, h * 0.25, 0, 0, Math.PI * 2);
+    this.ctx.fill();
+
+    this.ctx.restore();
+  }
+
+  drawStars(time) {
+    this.stars.forEach(star => {
+      // 闪烁计算
+      const twinkle = Math.sin(time * star.twinkleSpeed + star.twinklePhase);
+      const op = star.baseOpacity * (0.7 + twinkle * 0.3);
+
+      // 极其轻微的位置漂移
+      const dx = Math.cos(time * 0.0002 + star.twinklePhase) * star.drift;
+      const dy = Math.sin(time * 0.00015 + star.twinklePhase) * star.drift * 0.5;
+      const x = star.x + dx;
+      const y = star.y + dy;
+
+      // 绘制星星本体
+      this.ctx.beginPath();
+      this.ctx.arc(x, y, star.r, 0, Math.PI * 2);
+      this.ctx.fillStyle = this.getStarColor(star.colorType, op);
+      this.ctx.fill();
+
+      // 大星星添加十字光芒和光晕
+      if (star.r > 1.5) {
+        // 光晕
+        const glowR = star.r * 4;
+        const glow = this.ctx.createRadialGradient(x, y, 0, x, y, glowR);
+        glow.addColorStop(0, `rgba(200,220,255,${op * 0.15})`);
+        glow.addColorStop(1, 'transparent');
+        this.ctx.fillStyle = glow;
+        this.ctx.fillRect(x - glowR, y - glowR, glowR * 2, glowR * 2);
+
+        // 十字光芒（非常细微）
+        if (star.baseOpacity > 0.8) {
+          const len = star.r * 6;
+          this.ctx.strokeStyle = `rgba(220,235,255,${op * 0.12})`;
+          this.ctx.lineWidth = 0.5;
+          this.ctx.beginPath();
+          this.ctx.moveTo(x - len, y); this.ctx.lineTo(x + len, y);
+          this.ctx.moveTo(x, y - len); this.ctx.lineTo(x, y + len);
+          this.ctx.stroke();
+        }
+      }
+    });
+  }
+
+  drawDust(time) {
+    this.dustParticles.forEach(p => {
+      p.y -= p.speed; // 缓缓上升
+      if (p.y < -5) {
+        p.y = this.canvas.height + 5;
+        p.x = Math.random() * this.canvas.width;
+      }
+
+      this.ctx.beginPath();
+      this.ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      this.ctx.fillStyle = `rgba(200,215,240,${p.opacity})`;
+      this.ctx.fill();
+    });
+  }
+
+  animate(timestamp) {
+    this.time = timestamp || 0;
+    this.drawBackground();
+    this.drawMilkyWay();
+    this.drawDust(this.time);
+    this.drawStars(this.time);
+    requestAnimationFrame(t => this.animate(t));
+  }
+}
+
+
+// ========================================
+// 滚动动画（Intersection Observer）
+// ========================================
+class ScrollAnimator {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    const fadeElements = document.querySelectorAll('.fade-in-up');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+
+          // 数字递增动画
+          const statNumbers = entry.target.querySelectorAll('.hero-stat-number');
+          statNumbers.forEach(num => {
+            if (!num.classList.contains('animated')) {
+              this.animateNumber(num);
+            }
+          });
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    fadeElements.forEach(el => observer.observe(el));
+  }
+
+  animateNumber(el) {
+    const target = parseInt(el.getAttribute('data-target'));
+    const duration = 2000;
+    const startTime = performance.now();
+
+    el.classList.add('animated');
+
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // easeOutExpo 缓动
+      const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = Math.round(eased * target);
+
+      el.textContent = current;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+    requestAnimationFrame(update);
+  }
+}
+
+
+// ========================================
+// 导航栏滚动控制
+// ========================================
+class NavbarController {
+  constructor() {
+    this.navbar = document.getElementById('navbar');
+    this.backToTop = document.getElementById('backToTop');
+    this.heroEl = document.getElementById('hero');
+    this.init();
+  }
+
+  init() {
+    window.addEventListener('scroll', () => this.handleScroll(), { passive: true });
+    this.handleScroll(); // 初始状态
+  }
+
+  handleScroll() {
+    const scrollY = window.scrollY;
+
+    // 导航栏：滚动后变为实色半透明
+    if (scrollY > 60) {
+      this.navbar.classList.add('scrolled');
+    } else {
+      this.navbar.classList.remove('scrolled');
+    }
+
+    // 返回顶部按钮
+    if (scrollY > 400) {
+      this.backToTop.classList.add('visible');
+    } else {
+      this.backToTop.classList.remove('visible');
+    }
+  }
+}
+
+
+// ========================================
+// 平滑滚动
+// ========================================
+class SmoothScroll {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = anchor.getAttribute('href');
+        if (targetId === '#') return;
+
+        const targetEl = document.querySelector(targetId);
+        if (!targetEl) return;
+
+        const navHeight = 70; // 导航栏高度
+        const targetPos = targetEl.getBoundingClientRect().top + window.scrollY - navHeight;
+
+        window.scrollTo({ top: targetPos, behavior: 'smooth' });
+
+        // 关闭移动菜单
+        const menu = document.querySelector('.nav-mobile-menu');
+        if (menu) menu.classList.remove('active');
+        const toggle = document.getElementById('mobileToggle');
+        if (toggle) toggle.classList.remove('active');
+      });
+    });
+
+    // 返回顶部
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  }
+}
+
+
+// ========================================
+// 移动端菜单
+// ========================================
+class MobileMenu {
+  constructor() {
+    this.toggle = document.getElementById('mobileToggle');
+    this.init();
+  }
+
+  init() {
+    if (!this.toggle) return;
+
+    this.toggle.addEventListener('click', () => {
+      this.toggle.classList.toggle('active');
+
+      let menu = document.querySelector('.nav-mobile-menu');
+      if (!menu) {
+        menu = document.createElement('div');
+        menu.className = 'nav-mobile-menu';
+        menu.innerHTML = `
+          <ul>
+            <li><a href="#about">关于我们</a></li>
+            <li><a href="#services">服务领域</a></li>
+            <li><a href="#philosophy">核心理念</a></li>
+            <li><a href="#contact">联系方式</a></li>
+          </ul>`;
+        this.toggle.parentNode.appendChild(menu);
+
+        menu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            menu.classList.remove('active');
+            this.toggle.classList.remove('active');
+          });
+        });
+      }
+
+      menu.classList.toggle('active');
+    });
+  }
+}
+
+
+// ========================================
+// 联系表单处理
+// ========================================
+class ContactForm {
+  constructor() {
+    this.form = document.getElementById('contactForm');
+    this.init();
+  }
+
+  init() {
+    if (!this.form) return;
+    this.form.addEventListener('submit', e => {
+      e.preventDefault();
+      this.showMessage('感谢您的咨询！我们会尽快与张女士联系您。', 'success');
+      this.form.reset();
+    });
+  }
+
+  showMessage(text, type) {
+    const msg = document.createElement('div');
+    msg.style.cssText = `
+      position: fixed; top: 90px; left: 50%; transform: translateX(-50%);
+      padding: 14px 28px; border-radius: 12px;
+      font-weight: 500; font-size: 0.93rem; z-index: 10000;
+      animation: slideDown 0.35s cubic-bezier(0.22,1,0.36,1);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+      color: white;
+      background-color: ${type === 'success' ? '#38a169' : '#e53e3e'};
+    `;
+    msg.textContent = text;
+    document.body.appendChild(msg);
+
+    // 注入动画
+    if (!document.getElementById('form-msg-anim')) {
+      const style = document.createElement('style');
+      style.id = 'form-msg-anim';
+      style.textContent = '@keyframes slideDown{from{opacity:0;transform:translateX(-50%) translateY(-16px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}';
+      document.head.appendChild(style);
+    }
+
+    setTimeout(() => {
+      msg.style.animation = 'slideDown 0.25s ease reverse';
+      setTimeout(() => msg.remove(), 250);
+    }, 3500);
+  }
+}
+
+
+// ========================================
+// 初始化
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+  // 星空动画（Hero 区域内）
+  new Starfield('starfield');
+
+  // 滚动淡入
+  new ScrollAnimator();
+
+  // 导航栏
+  new NavbarController();
+
+  // 平滑滚动
+  new SmoothScroll();
+
+  // 移动端菜单
+  new MobileMenu();
+
+  console.log('✦ 北京星稞医学研究有限公司 — 网站已加载');
+  console.log('设计理念：星空下的种子 | Hero风格：Edge浏览器式星空山脉');
+});
+
+</script>
+</body>
+</html>
